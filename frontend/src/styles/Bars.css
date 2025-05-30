@@ -1,0 +1,64 @@
+.sidebar {
+  background-color: #f8f9fa; /* Light gray background */
+  width: 200px;
+  padding: 1rem;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  height: 100vh; /* Full height */
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #495057; /* Gray text */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.sidebar-item a:hover {
+  color: #007bff; /* Blue text on hover */
+}
+
+.sidebar-item i {
+  font-size: 1.2rem;
+}
+
+.navbar {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #343a40; /* Dark gray text */
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links a {
+  color: #495057; /* Gray text */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-links a:hover {
+  color: #007bff; /* Blue text on hover */
+}
