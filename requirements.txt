@@ -6,5 +6,7 @@ djangorestframework-simplejwt
 PyJWT
 pytz
 psycopg2-binary
+dotenv
 python-dotenv
 mysqlclient
+sqlparse

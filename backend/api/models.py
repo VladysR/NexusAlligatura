@@ -25,6 +25,21 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
+    
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='customuser_set',
+        blank=True,
+        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+        related_query_name='customuser',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='customuser_permissions_set',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_query_name='customuser_permissions',
+    )
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

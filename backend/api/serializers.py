@@ -8,6 +8,12 @@ class UserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ['id', 'email', 'password', 'first_name', 'last_name', 'telefono', 'domicilio', 'URL_imagen_perfil']
         extra_kwargs = {'password': {'write_only': True}}
+    
+    def create(self, validated_data):
+        user = CustomUser(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 class VeterinarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,6 +63,20 @@ class CitaSerializer(serializers.ModelSerializer):
         servicio = Servicio.objects.get(id=validated_data['servicio'])
         cita = Cita.objects.create(mascota=mascota,veterinario=veterinario,servicio=servicio,**validated_data)
         return cita
+    
+class HistoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Historia
+        fields = ['id','anamnesis','diagnostico','tratamiento','veterinario','mascota','cita']
+        extra_kwargs = {'mascota': {'write_only': True}}
+        extra_kwargs = {'veterinario': {'write_only': True}}
+        extra_kwargs = {'cita': {'write_only': True}}
+    def create(self, validated_data):
+        mascota = Mascota.objects.get(id=validated_data['mascota'])
+        veterinario = Veterinario.objects.get(id=validated_data['veterinario'])
+        cita = Cita.objects.get(id=validated_data['cita'])
+        historia = Historia.objects.create(mascota=mascota,veterinario=veterinario,cita=cita,**validated_data)
+        return historia
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
