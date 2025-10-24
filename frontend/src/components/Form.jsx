@@ -1,7 +1,8 @@
 import {useState} from "react";
-import api from "../api";
+import api from "../api.js";
 import {useNavigate} from "react-router-dom";
 import {REFRESH_TOKEN, ACCESS_TOKEN} from "../constants";
+import '../styles/Form.css';
 
 function Form({route, method}) {
     const [email, setEmail] = useState("");
@@ -24,22 +25,22 @@ function Form({route, method}) {
             const res = await api.post(route, { email,password, telefono, domicilio, isVeterinario, num_colegiado });
             alert("Registration successful! Please log in.");
             navigate("/login");
-        } else {
+            } else if (method === "login"){
             const res =  await api.post(route, { email, password });
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
             navigate("/");
-            }
-            } catch (error) {
-                alert(error)
-            } finally {
+        }
+        } catch (error) {
+                alert(error + "putas")
+        } finally {
                 setLoading(false);
-            }
+      }
     }
 
     if (method === "login") {
         return(
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="form-container">
                 <h1>Iniciar Sesion</h1>
                 <input 
                     type="email" 
@@ -47,6 +48,7 @@ function Form({route, method}) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="form-input"
                 />
                 <input 
                     type="password" 
@@ -54,8 +56,9 @@ function Form({route, method}) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="form-input"
                 />
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading} className="form-button">
                     Iniciar Sesion
                 </button>
             </form>
@@ -70,6 +73,7 @@ function Form({route, method}) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="form-input"
                 />
                 <input 
                     type="password" 
@@ -77,6 +81,7 @@ function Form({route, method}) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="form-input"
                 />
                 <input
                     type="text"
@@ -84,6 +89,7 @@ function Form({route, method}) {
                     value={telefono}
                     onChange={(e) => setTelefono(e.target.value)}
                     required
+                    className="form-input"
                 />
                 <input
                     type="text"
@@ -91,9 +97,11 @@ function Form({route, method}) {
                     value={domicilio}
                     onChange={(e) => setDomicilio(e.target.value)}
                     required
+                    className="form-input"
                 />
                 <label>
                     <input
+                        className="form-input"
                         type="checkbox"
                         checked={isVeterinario}
                         onChange={(e) => setIsVeterinario(e.target.checked)}
@@ -107,10 +115,11 @@ function Form({route, method}) {
                         value={num_colegiado}
                         onChange={(e) => setNum_colegiado(e.target.value)}
                         required
+                        className="form-input"
                     />
                 )}
                 </label>
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading} className="form-button">
                     Crear Cuenta
                 </button>
             </form>

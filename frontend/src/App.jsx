@@ -3,7 +3,7 @@ import { BrowserRouter,Route,Navigate, Routes } from 'react-router-dom'
 import Login from "./pages/Login.jsx"
 import Register from "./pages/Register.jsx"
 import NotFound from "./pages/NotFound.jsx"
-import index from "./pages/index.jsx"
+import Index from "./pages/index.jsx"
 import ProtectedRoute from "./components/ProtectedRoutes.jsx"
 
 function Logout(){
@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path ="/" element={
           <ProtectedRoute>
-            <index />
+            <Index />
           </ProtectedRoute>} 
         />
         
